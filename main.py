@@ -1,3 +1,4 @@
+
 import logging
 import requests
 import datetime
@@ -30,9 +31,11 @@ async def echo(message: types.Message):
     temperature = round(data["main"]["temp"])
     humidity = round(data["main"]["humidity"])
     wind = round(data["wind"]["speed"])
+    pressure = round(data["main"]["pressure"])
     await message.answer(f"***{datetime.datetime.now().strftime('%b %d %Y %H:%M')}***\n"
                                 f"Погода в місті: {city}\n\U0001F321Температура: {temperature} C°\n"
                                 f"\U0001F4A7Вологість повітря: {humidity} %\n"
+                                f"\U0001F975Тиск: {pressure} pa\n"
                                 f"\U0001F32AВітер: {wind} м/с\n ")
 
 
