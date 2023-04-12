@@ -15,6 +15,10 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
+def get_date(timezone):
+    tz = datetime.timezone(datetime.timedelta(seconds=int(timezone)))
+    return datetime.datetime.now(tz = tz).strftime("%m/%d/%Y, %H:%M:%S")
+
 
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
@@ -36,6 +40,7 @@ async def echo(message: types.Message):
                                 f"Погода в місті: {city}\n\U0001F321Температура: {temperature} C°\n"
                                 f"\U0001F4A7Вологість повітря: {humidity} %\n"
                                 f"\U0001F975Тиск: {pressure} pa\n"
+                                f"Місцевий час: {get_date(data['timezone'])}"
                                 f"\U0001F32AВітер: {wind} м/с\n ")
 
 
